@@ -7,7 +7,7 @@ if (WIN32)
 endif ()
 set(DAWN_FETCH_DEPENDENCIES ON CACHE BOOL "")
 set(DAWN_ENABLE_INSTALL ON CACHE BOOL "")
-if (CMAKE_SYTEM_NAME STREQUAL "Linux")
+if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
     # `sccache` seems effective only on linux.
     # for windows, we could look into `buildcache`
     # for macos, `sccache` causes an argument parse error for clang
@@ -34,7 +34,7 @@ if(DAWN_MOBILE_BUILD)
 
     # Use static monolithic library
     set(DAWN_BUILD_MONOLITHIC_LIBRARY STATIC CACHE STRING "")
-    set(BUILD_SHARED_LIBS STATIC CACHE STRING BOOL "")
+    set(BUILD_SHARED_LIBS OFF CACHE BOOL "")
 
     set(DAWN_USE_GLFW OFF CACHE BOOL "")
     # Configure OpenGL variables by default.
@@ -50,4 +50,6 @@ if(DAWN_MOBILE_BUILD)
     endif()
 else()
     set(TINT_ENABLE_INSTALL ON CACHE BOOL "")
+
+    set(DAWN_BUILD_MONOLITHIC_LIBRARY SHARED CACHE STRING "")
 endif()
